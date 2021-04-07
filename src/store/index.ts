@@ -1,7 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios'
 
 Vue.use(Vuex)
+
 
 export default new Vuex.Store({
   state: {
@@ -10,6 +12,7 @@ export default new Vuex.Store({
       {id: 1, name: "Molly", age: 26},
       {id: 2, name: "Pippi", age: 1}
     ],
+    items: [],
     field_offices: []
   },
   getters: {
@@ -18,6 +21,9 @@ export default new Vuex.Store({
     },
     getPersonProp: (state) => (id: number) => {
       return state.persons.find(person => person.id === id)
+    },
+    allItems: state => {
+      return state.items
     }
   },
   mutations: {
@@ -26,6 +32,9 @@ export default new Vuex.Store({
     },
     addPerson(state, person) {
       state.persons.push(person)
+    },
+    getAllItems(state, items) {
+      state.items = items
     }
   },
 
@@ -35,6 +44,18 @@ export default new Vuex.Store({
     },
     addPerson(context, person) {
       context.commit('addPerson', person)
+    },
+    // getAllItems({ commit }) {
+    //   axios.get("https://api.fbi.gov/wanted/v1/list")
+    //   .then(response => {
+    //     commit('getAllItems', response.data)
+    //   })
+    // },
+    getAllItems(context) {
+      axios.get("https://api.fbi.gov/wanted/v1/list")
+      .then(response => {
+        context.commit('getAllItems', response.data)
+      })
     }
   },
   modules: {
