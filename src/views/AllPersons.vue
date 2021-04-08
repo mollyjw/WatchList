@@ -14,7 +14,7 @@
           </div>
         </v-expansion-panel-header>
         <v-expansion-panel-content style="text-align: left">
-          {{ person.details }} {{ person.date }}
+          {{ person.details }}
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>

@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <h1>Details</h1>
-                    <h4 style="text-align: left">{{person.details}}</h4>
+                    <h4>{{person.details}}</h4>
                 </div>
                 <div>
                     <h1>Suspect(s) Description</h1>
@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <h1>Reward</h1>
-                    <h4 style="text-align: left">{{person.reward}}</h4>
+                    <h4>{{person.reward}}</h4>
                     <h4 style="margin-top: 3%"> Please contact the {{person.fieldOffice}} field office if you have any information about this case.</h4>
 
                 </div>

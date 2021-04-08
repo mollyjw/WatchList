@@ -115,7 +115,7 @@
       <v-row>
         <v-col cols="12" md="12">
           <v-text-field
-            v-model="person.images"
+            v-model="person.image"
             label="Image URL"
             prepend-icon="mdi-image"
           ></v-text-field>
@@ -155,7 +155,7 @@ export default Vue.extend({
         details: "",
         reward: "",
         fieldOffice: "",
-        images: [],
+        image: ""
       },
     };
   },
@@ -181,7 +181,7 @@ export default Vue.extend({
             details: this.person.details,
             reward: this.person.reward,
             fieldOffice: this.person.fieldOffice,
-            images: this.person.images,
+            image: this.person.image,
           });
           console.log("successfully added!")
           this.reset()
