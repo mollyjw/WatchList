@@ -1,30 +1,38 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios'
+import { PersonList } from './persons'
+import { FieldOffices } from './field-office'
+import { CrimeCategories } from './categories'
 
 Vue.use(Vuex)
-
 
 export default new Vuex.Store({
   state: {
     total: 8,
-    persons: [
-      {id: 1, name: "Molly", age: 26},
-      {id: 2, name: "Pippi", age: 1}
-    ],
-    items: [],
-    field_offices: []
+    persons: PersonList,
+    field_offices: FieldOffices,
+    crimeCategories: CrimeCategories
   },
   getters: {
     totalCount: state => {
       return state.total
     },
-    getPersonProp: (state) => (id: number) => {
-      return state.persons.find(person => person.id === id)
+    getFieldOffices: state => {
+      return state.field_offices
     },
-    allItems: state => {
-      return state.items
+    getCrimeCategories: state => {
+      return state.crimeCategories
+    },
+    getPersons: (state) => {
+      return state.persons
+    },
+    getPersonById: (state) => (id: number) => {
+      const result = state.persons.filter(obj => {
+        return obj.id ===id
+      })[0]
+      return result
     }
+    
   },
   mutations: {
     increment(state, n) {
@@ -33,8 +41,8 @@ export default new Vuex.Store({
     addPerson(state, person) {
       state.persons.push(person)
     },
-    getAllItems(state, items) {
-      state.items = items
+    deletePerson(state, id) {
+      state.persons.splice(state.persons.findIndex(person => person.id === id), 1)
     }
   },
 
@@ -45,19 +53,8 @@ export default new Vuex.Store({
     addPerson(context, person) {
       context.commit('addPerson', person)
     },
-    // getAllItems({ commit }) {
-    //   axios.get("https://api.fbi.gov/wanted/v1/list")
-    //   .then(response => {
-    //     commit('getAllItems', response.data)
-    //   })
-    // },
-    getAllItems(context) {
-      axios.get("https://api.fbi.gov/wanted/v1/list")
-      .then(response => {
-        context.commit('getAllItems', response.data)
-      })
+    deletePerson(context, id) {
+      context.commit('deletePerson', id)
     }
   },
-  modules: {
-  }
 })
