@@ -33,7 +33,8 @@
                     <h4 style="margin-top: 3%"> Please contact the {{person.fieldOffice}} field office if you have any information about this case.</h4>
 
                 </div>
-                <v-btn v-on:click="deletePerson(person.id)">Delete</v-btn>
+                <v-btn color="primary" v-on:click="deletePerson(person.id)">Delete</v-btn>
+                <v-btn color="primary" v-on:click="goToEdit(person.id)">Edit</v-btn>
             </div>
         </v-col>
       </v-row>
@@ -66,7 +67,10 @@ export default Vue.extend({
     },
     deletePerson(id: number) {
         store.dispatch('deletePerson', id);
-        router.go(-1)
+        router.push( {name: 'All Persons'})
+    },
+    goToEdit(id: number) {
+        router.push( {name: 'Edit Person', params: {id: id} })
     }
   },
 });

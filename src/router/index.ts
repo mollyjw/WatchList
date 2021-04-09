@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import AllPersons from '../views/AllPersons.vue'
 import AddPerson from '../views/AddPerson.vue'
 import OnePerson from '../views/OnePerson.vue'
+import EditPerson from '../views/EditPerson.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes: Array<RouteConfig> = [
     path: '/allpersons/:id',
     name: 'One Person',
     component: OnePerson
+  },
+  {
+    path: '/allpersons/:id/edit',
+    name: 'Edit Person',
+    component: EditPerson
   }
 ]
 

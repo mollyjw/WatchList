@@ -43,6 +43,19 @@ export default new Vuex.Store({
     },
     deletePerson(state, id) {
       state.persons.splice(state.persons.findIndex(person => person.id === id), 1)
+    },
+    updatePerson(state, payload) {
+      const { id, name, suspects, topic, date, location, details, reward, fieldOffice, image} = payload
+      const person = state.persons.find(p => p.id === id)
+      person.name = name,
+      person.suspects = suspects,
+      person.topic = topic,
+      person.date = date,
+      person.location = location,
+      person.details = details,
+      person.reward = reward,
+      person.fieldOffice = fieldOffice,
+      person.image = image
     }
   },
 
